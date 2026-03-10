@@ -9,490 +9,385 @@
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@300;400;500;700&display=swap');
 
   :root {
-    --black: #0a0a0a;
-    --gray-900: #1a1a1a;
-    --gray-800: #2a2a2a;
-    --gray-700: #3a3a3a;
-    --gray-600: #555;
-    --gray-400: #888;
-    --gray-200: #d0d0d0;
-    --gray-100: #e8e8e8;
-    --gray-050: #f4f4f4;
-    --white: #fafafa;
-    --accent: #0a0a0a;
+    --black:    #111;
+    --gray-700: #444;
+    --gray-600: #666;
+    --gray-400: #999;
+    --gray-200: #ddd;
+    --gray-100: #eee;
+    --gray-050: #f7f7f7;
+    --white:    #fff;
+    --border:   #d4d4d4;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     font-family: 'Noto Sans JP', sans-serif;
-    background: var(--gray-050);
+    background: #ebebeb;
     color: var(--black);
     min-height: 100vh;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
-  /* ======= HEADER ======= */
+  /* ===== HEADER ===== */
   .site-header {
-    background: var(--black);
-    color: var(--white);
-    padding: 0;
-    border-bottom: 3px solid var(--gray-600);
+    background: var(--white);
+    border-bottom: 2px solid var(--black);
   }
   .site-header-inner {
-    max-width: 900px;
+    max-width: 1020px;
     margin: 0 auto;
-    padding: 20px 24px 16px;
+    padding: 16px 24px 12px;
     display: flex;
     align-items: baseline;
-    gap: 20px;
+    gap: 16px;
   }
-  .site-title {
+  .site-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    font-weight: 400;
+    font-size: 10px;
     letter-spacing: 0.25em;
-    text-transform: uppercase;
     color: var(--gray-400);
+    text-transform: uppercase;
   }
-  .site-main-title {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--white);
-  }
+  .site-title { font-size: 18px; font-weight: 900; letter-spacing: 0.04em; }
 
-  /* ======= TOOLBAR ======= */
+  /* ===== TOOLBAR ===== */
+  .toolbar-wrap {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
   .toolbar {
-    background: var(--gray-900);
-    border-bottom: 1px solid var(--gray-700);
-    padding: 10px 24px;
-    display: flex;
-    gap: 8px;
-    max-width: 900px;
+    max-width: 1020px;
     margin: 0 auto;
+    padding: 8px 24px;
+    display: flex;
+    gap: 6px;
     flex-wrap: wrap;
+    align-items: center;
   }
   .btn {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     padding: 7px 16px;
-    border: 1px solid var(--gray-600);
-    background: transparent;
-    color: var(--gray-200);
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.15s;
-  }
-  .btn:hover { background: var(--gray-700); color: var(--white); border-color: var(--gray-400); }
-  .btn-primary { background: var(--white); color: var(--black); border-color: var(--white); }
-  .btn-primary:hover { background: var(--gray-200); }
-  .btn-save { border-color: var(--gray-400); color: var(--gray-200); }
-  .btn-load { border-color: var(--gray-400); color: var(--gray-200); }
-
-  /* ======= MAIN ======= */
-  .main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 32px 24px 80px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  /* ======= SECTION ======= */
-  .section {
+    border: 1px solid var(--border);
     background: var(--white);
-    border: 1px solid var(--gray-200);
-    margin-bottom: 2px;
+    color: var(--gray-700);
+    cursor: pointer;
+    transition: all 0.12s;
   }
-  .section-header {
-    background: var(--gray-900);
-    color: var(--white);
-    padding: 12px 20px;
+  .btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+  .btn-danger:hover { background: #c00; border-color: #c00; color: #fff; }
+
+  /* ===== MAIN LAYOUT ===== */
+  .main {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 24px 24px 80px;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .left-col { display: flex; flex-direction: column; gap: 4px; }
+
+  /* ===== INPUT CARD ===== */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+  }
+  .card-header {
+    background: var(--gray-050);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 14px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     cursor: pointer;
     user-select: none;
   }
-  .section-header:hover { background: var(--gray-800); }
-  .section-num {
+  .card-header:hover { background: var(--gray-100); }
+  .card-num {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 0.2em;
     color: var(--gray-400);
-    font-weight: 400;
   }
-  .section-title {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    flex: 1;
-  }
-  .section-toggle {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 16px;
-    color: var(--gray-400);
-    transition: transform 0.2s;
-  }
-  .section-toggle.open { transform: rotate(90deg); }
-  .section-body {
-    padding: 24px 20px;
-  }
-  .section-body.hidden { display: none; }
+  .card-title { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; flex: 1; }
+  .card-arrow { font-size: 10px; color: var(--gray-400); transition: transform 0.2s; }
+  .card-arrow.open { transform: rotate(90deg); }
+  .card-body { padding: 14px; }
+  .card-body.hidden { display: none; }
 
-  /* ======= FORM GRID ======= */
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .form-grid-3 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
-  }
-  .form-full { grid-column: 1 / -1; }
-
-  .field {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
+  /* ===== FIELDS ===== */
+  .field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+  .field:last-child { margin-bottom: 0; }
   .field label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gray-600);
     font-weight: 500;
   }
-  .field input,
-  .field select,
-  .field textarea {
+  .field input, .field select, .field textarea {
     font-family: 'Noto Sans JP', sans-serif;
-    font-size: 14px;
-    padding: 9px 12px;
-    border: 1px solid var(--gray-200);
-    background: var(--gray-050);
-    color: var(--black);
-    outline: none;
-    transition: border-color 0.15s;
-    width: 100%;
-  }
-  .field input:focus,
-  .field select:focus,
-  .field textarea:focus {
-    border-color: var(--gray-700);
+    font-size: 13px;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
     background: var(--white);
-  }
-  .field .hint {
-    font-size: 11px;
-    color: var(--gray-400);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  /* ======= RATE TABLE ======= */
-  .rate-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 4px;
-  }
-  .rate-table th {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gray-600);
-    padding: 8px 12px;
-    border-bottom: 2px solid var(--gray-200);
-    text-align: left;
-    background: var(--gray-050);
-  }
-  .rate-table td {
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--gray-100);
-    vertical-align: middle;
-  }
-  .rate-table input {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    padding: 6px 10px;
-    border: 1px solid var(--gray-200);
-    background: var(--gray-050);
     color: var(--black);
     outline: none;
-    text-align: right;
-    width: 120px;
-  }
-  .rate-table input:focus { border-color: var(--gray-700); background: var(--white); }
-  .role-badge {
-    display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    padding: 3px 10px;
-    border: 1px solid var(--black);
-    text-transform: uppercase;
-  }
-  .role-badge.pillar { background: var(--black); color: var(--white); }
-  .role-badge.padawan { background: transparent; color: var(--black); }
-
-  /* ======= STAFF LIST ======= */
-  .staff-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 4px;
-  }
-  .staff-card {
-    border: 1px solid var(--gray-200);
-    background: var(--gray-050);
-    position: relative;
-  }
-  .staff-card-header {
-    background: var(--gray-100);
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--gray-200);
-  }
-  .staff-card-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--gray-600);
-    letter-spacing: 0.15em;
-  }
-  .staff-card-name-display {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--gray-800);
-  }
-  .staff-card-body {
-    padding: 16px 14px;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr auto;
-    gap: 12px;
-    align-items: end;
-  }
-  .btn-remove {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 18px;
-    background: transparent;
-    border: 1px solid var(--gray-300);
-    color: var(--gray-400);
-    cursor: pointer;
-    padding: 4px 10px;
-    line-height: 1;
-    transition: all 0.15s;
-    align-self: flex-end;
-  }
-  .btn-remove:hover { background: var(--black); color: var(--white); border-color: var(--black); }
-  .btn-add-staff {
-    margin-top: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    padding: 10px 16px;
-    background: transparent;
-    border: 1px dashed var(--gray-400);
-    color: var(--gray-600);
-    cursor: pointer;
-    text-transform: uppercase;
+    transition: border-color 0.12s;
     width: 100%;
-    transition: all 0.15s;
   }
-  .btn-add-staff:hover { border-color: var(--black); color: var(--black); background: var(--gray-050); }
-
-  /* ======= TRANSPORT ======= */
-  .transport-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    align-items: start;
-  }
-  .calc-display {
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--black); }
+  .field input[readonly], .field input[readonly]:focus {
     background: var(--gray-050);
-    border: 1px solid var(--gray-200);
-    padding: 14px 16px;
-    margin-top: 16px;
-  }
-  .calc-display-title {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
     color: var(--gray-600);
-    margin-bottom: 10px;
+    border-color: var(--gray-100);
+    cursor: default;
   }
-  .calc-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 0;
-    border-bottom: 1px solid var(--gray-100);
-    font-size: 13px;
-  }
-  .calc-row:last-child { border-bottom: none; }
-  .calc-label { color: var(--gray-600); }
-  .calc-value { font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
-  .calc-value.accent { color: var(--black); font-weight: 700; }
+  .field .hint { font-size: 10px; color: var(--gray-400); line-height: 1.5; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 
-  /* ======= SUMMARY / PREVIEW ======= */
-  .summary-section {
-    background: var(--black);
-    color: var(--white);
-    border: none;
-    margin-top: 24px;
-  }
-  .summary-header {
-    padding: 16px 24px;
-    border-bottom: 1px solid var(--gray-700);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .summary-title {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gray-400);
-  }
-  .summary-body {
-    padding: 24px;
-  }
-  .summary-event-info {
-    font-size: 11px;
-    color: var(--gray-400);
-    font-family: 'IBM Plex Mono', monospace;
-    letter-spacing: 0.1em;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--gray-700);
-  }
-  .summary-staff-rows {
-    margin-bottom: 24px;
-  }
-  .summary-row {
-    display: grid;
-    grid-template-columns: 180px 80px 1fr 1fr 120px;
-    gap: 8px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--gray-800);
-    align-items: center;
-    font-size: 13px;
-  }
-  .summary-row.header {
+  /* ===== RATE TABLE ===== */
+  .rate-table { width: 100%; border-collapse: collapse; }
+  .rate-table th {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 9px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--gray-600);
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--gray-700);
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border);
+    background: var(--gray-050);
+    text-align: left;
   }
-  .summary-row .amount {
+  .rate-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: middle;
+    font-size: 12px;
+  }
+  .role-pill {
+    display: inline-block;
     font-family: 'IBM Plex Mono', monospace;
-    text-align: right;
-    font-size: 13px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    padding: 2px 9px;
+    border: 1px solid var(--black);
   }
-  .transport-summary {
-    margin-bottom: 24px;
-    padding: 16px;
-    background: var(--gray-900);
-    border: 1px solid var(--gray-700);
+  .role-pill.pillar { background: var(--black); color: var(--white); }
+  .role-pill.padawan { background: transparent; color: var(--black); }
+
+  /* ===== CALC MINI ===== */
+  .calc-mini {
+    background: var(--gray-050);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    margin-top: 10px;
   }
-  .transport-summary-title {
+  .calc-mini-title {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--gray-400);
-    margin-bottom: 12px;
+    font-size: 9px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 7px;
   }
-  .total-area {
-    border-top: 2px solid var(--white);
-    padding-top: 20px;
+  .calc-line {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    font-size: 12px;
+    padding: 3px 0;
+    border-bottom: 1px solid var(--gray-100);
+    color: var(--gray-600);
   }
-  .total-label {
-    font-family: 'IBM Plex Mono', monospace;
+  .calc-line:last-child { border-bottom: none; color: var(--black); font-weight: 700; }
+  .calc-line span:last-child { font-family: 'IBM Plex Mono', monospace; }
+
+  /* ===== NOTE ===== */
+  .note {
     font-size: 11px;
+    color: var(--gray-600);
+    background: var(--gray-050);
+    border-left: 3px solid var(--gray-200);
+    padding: 8px 12px;
+    margin-top: 10px;
+    line-height: 1.8;
+  }
+  .divider { height: 1px; background: var(--gray-100); margin: 12px 0; }
+
+  /* ===== RIGHT COL ===== */
+  .right-col { position: sticky; top: 52px; display: flex; flex-direction: column; gap: 16px; }
+
+  /* ===== PRINT PAGE ===== */
+  .print-page {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 40px 44px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  .page-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gray-400);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
-  .total-amount {
+
+  /* --- 計算書 --- */
+  .doc-title {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    border-bottom: 2px solid var(--black);
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+  }
+  .doc-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 20px;
+    margin-bottom: 20px;
+  }
+  .doc-meta-row { display: flex; gap: 8px; font-size: 12px; }
+  .doc-meta-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--gray-400); min-width: 54px; }
+  .doc-meta-val { color: var(--black); font-weight: 500; }
+
+  .calc-block { margin-bottom: 18px; }
+  .calc-block-hd {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 36px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--white);
-  }
-  .total-unit {
-    font-size: 16px;
-    margin-left: 4px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     color: var(--gray-400);
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--gray-100);
+    margin-bottom: 6px;
   }
+  .ct { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .ct td { padding: 5px 8px; border-bottom: 1px solid var(--gray-100); }
+  .ct td.lbl { color: var(--gray-600); width: 55%; }
+  .ct td.val { text-align: right; font-family: 'IBM Plex Mono', monospace; }
+  .ct .tr td { font-weight: 700; border-top: 1px solid var(--black); border-bottom: none; padding-top: 8px; font-size: 13px; }
 
-  /* ======= PRINT / PDF STYLES ======= */
-  @media print {
-    body { background: white; }
-    .site-header { background: white; color: black; border-bottom: 2px solid black; }
-    .site-title, .section-num { color: #555; }
-    .site-main-title { color: black; }
-    .toolbar, .btn-add-staff, .btn-remove, .no-print { display: none !important; }
-    .section { border: 1px solid #ccc; break-inside: avoid; }
-    .section-header { background: #1a1a1a; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .summary-section { background: #0a0a0a; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .main { padding: 20px 24px; }
-  }
-
-  /* ======= TOAST ======= */
-  .toast {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
+  .grand-bar {
     background: var(--black);
     color: var(--white);
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+  }
+  .grand-sub { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #aaa; }
+  .grand-val { font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 700; }
+
+  /* --- 請求書 --- */
+  .inv-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px double var(--black);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+  }
+  .inv-title { font-size: 24px; font-weight: 900; letter-spacing: 0.1em; }
+  .inv-date { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--gray-400); }
+  .inv-parties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .party-lbl {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 4px;
+  }
+  .party-name { font-size: 15px; font-weight: 700; }
+  .party-sub { font-size: 11px; color: var(--gray-600); }
+  .inv-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 14px; }
+  .inv-table th {
+    background: var(--black);
+    color: var(--white);
+    padding: 7px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
     letter-spacing: 0.1em;
-    padding: 12px 20px;
-    border: 1px solid var(--gray-600);
-    opacity: 0;
-    transform: translateY(8px);
-    transition: all 0.3s;
-    pointer-events: none;
-    z-index: 999;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .inv-table th:last-child { text-align: right; }
+  .inv-table td { padding: 9px 10px; border-bottom: 1px solid var(--gray-100); }
+  .inv-table td:last-child { text-align: right; font-family: 'IBM Plex Mono', monospace; font-weight: 700; }
+  .inv-table .sub-row td { background: var(--gray-050); font-weight: 700; border-top: 1px solid var(--black); border-bottom: 2px solid var(--black); }
+  .inv-total {
+    background: var(--black);
+    color: var(--white);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .inv-total-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #aaa; }
+  .inv-total-amt { font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 700; }
+  .inv-total-unit { font-size: 13px; color: #888; margin-left: 4px; }
+  .inv-footer {
+    font-size: 10px;
+    color: var(--gray-400);
+    margin-top: 14px;
+    line-height: 1.8;
+    font-family: 'IBM Plex Mono', monospace;
+    border-top: 1px solid var(--gray-100);
+    padding-top: 10px;
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { background: white; }
+    .site-header, .toolbar-wrap, .left-col, .page-badge { display: none !important; }
+    .main { display: block; padding: 0; max-width: 100%; }
+    .right-col { position: static; gap: 0; }
+    .print-page {
+      border: none;
+      box-shadow: none;
+      padding: 18mm 20mm;
+      page-break-after: always;
+      break-after: page;
+    }
+    .print-page:last-child { page-break-after: avoid; break-after: avoid; }
+  }
+
+  /* ===== TOAST ===== */
+  .toast {
+    position: fixed; bottom: 20px; right: 20px;
+    background: var(--black); color: var(--white);
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em;
+    padding: 10px 18px; border: 1px solid #444;
+    opacity: 0; transform: translateY(6px); transition: all 0.25s;
+    pointer-events: none; z-index: 999;
   }
   .toast.show { opacity: 1; transform: translateY(0); }
 
-  /* ======= DIVIDERS ======= */
-  .divider {
-    height: 1px;
-    background: var(--gray-100);
-    margin: 20px 0;
-  }
-  .note {
-    font-size: 12px;
-    color: var(--gray-600);
-    background: var(--gray-050);
-    border-left: 3px solid var(--gray-300);
-    padding: 10px 14px;
-    margin-top: 12px;
-    font-family: 'IBM Plex Mono', monospace;
-    line-height: 1.7;
+  @media (max-width: 780px) {
+    .main { grid-template-columns: 1fr; }
+    .right-col { position: static; }
   }
 </style>
 </head>
@@ -500,31 +395,33 @@
 
 <header class="site-header">
   <div class="site-header-inner">
-    <span class="site-title">SNS Marketing School</span>
-    <span class="site-main-title">運営費 請求書 ジェネレーター</span>
+    <span class="site-label">SNS Marketing School</span>
+    <span class="site-title">運営費 請求書ジェネレーター</span>
   </div>
 </header>
 
-<div class="toolbar" id="toolbar">
-  <button class="btn btn-primary" onclick="generatePreview()">▶ プレビュー更新</button>
-  <button class="btn btn-save" onclick="saveData()">💾 途中保存</button>
-  <button class="btn btn-load" onclick="loadData()">📂 データ読込</button>
-  <button class="btn" onclick="exportPDF()">🖨 PDF出力</button>
-  <button class="btn" onclick="exportImage()">🖼 画像出力</button>
-  <button class="btn" onclick="clearAll()">✕ リセット</button>
+<div class="toolbar-wrap">
+  <div class="toolbar">
+    <button class="btn" onclick="saveData()">💾 途中保存</button>
+    <button class="btn" onclick="loadData()">📂 読み込み</button>
+    <button class="btn" onclick="exportPDF()">🖨 PDF出力</button>
+    <button class="btn" onclick="exportImage()">🖼 画像出力</button>
+    <button class="btn btn-danger" onclick="clearAll()">✕ リセット</button>
+  </div>
 </div>
 
-<div class="main" id="main-content">
+<div class="main">
 
-  <!-- ====== イベント情報 ====== -->
-  <div class="section">
-    <div class="section-header" onclick="toggleSection('event')">
-      <span class="section-num">SEC — 01</span>
-      <span class="section-title">イベント基本情報</span>
-      <span class="section-toggle open" id="toggle-event">▶</span>
-    </div>
-    <div class="section-body" id="body-event">
-      <div class="form-grid">
+  <!-- ====== 左: 入力フォーム ====== -->
+  <div class="left-col">
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard('event')">
+        <span class="card-num">01</span>
+        <span class="card-title">イベント基本情報</span>
+        <span class="card-arrow open" id="arrow-event">▶</span>
+      </div>
+      <div class="card-body" id="body-event">
         <div class="field">
           <label>イベント名</label>
           <input type="text" id="event-name" placeholder="例：eduGate万博大阪2026">
@@ -539,480 +436,443 @@
         </div>
         <div class="field">
           <label>請求先</label>
-          <input type="text" id="recipient-name" value="株式会社INFLU様" readonly style="background:var(--gray-100);color:var(--gray-600);cursor:default;">
+          <input type="text" id="recipient-name" value="株式会社INFLU様" readonly>
         </div>
-        <div class="field form-full">
+        <div class="field">
           <label>備考・メモ</label>
-          <textarea id="event-memo" rows="2" placeholder="イベント内容・特記事項など"></textarea>
+          <textarea id="event-memo" rows="2" placeholder="特記事項など"></textarea>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ====== 時給設定 ====== -->
-  <div class="section">
-    <div class="section-header" onclick="toggleSection('rates')">
-      <span class="section-num">SEC — 02</span>
-      <span class="section-title">時給レート設定</span>
-      <span class="section-toggle open" id="toggle-rates">▶</span>
-    </div>
-    <div class="section-body" id="body-rates">
-      <table class="rate-table">
-        <thead>
-          <tr>
-            <th>ロール</th>
-            <th>役割説明</th>
-            <th style="text-align:right">時給レート（円/時）</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="role-badge pillar">柱講師</span></td>
-            <td style="font-size:12px; color:#555">メイン運営担当</td>
-            <td style="text-align:right">
-              <input type="number" id="rate-pillar" value="3000" readonly style="background:var(--gray-100);color:var(--gray-600);cursor:default;">
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#888;margin-left:4px">円</span>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="role-badge padawan">パダワン</span></td>
-            <td style="font-size:12px; color:#555">運営サポート担当</td>
-            <td style="text-align:right">
-              <input type="number" id="rate-padawan" value="2000" readonly style="background:var(--gray-100);color:var(--gray-600);cursor:default;">
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#888;margin-left:4px">円</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="note">
-        ※ 時給レートは固定です（柱講師：3,000円 / パダワン：2,000円）<br>
-        ※ 移動対価費の時給は共通で 3,000円 固定です。
+    <div class="card">
+      <div class="card-header" onclick="toggleCard('rates')">
+        <span class="card-num">02</span>
+        <span class="card-title">時給レート（固定）</span>
+        <span class="card-arrow open" id="arrow-rates">▶</span>
+      </div>
+      <div class="card-body" id="body-rates">
+        <table class="rate-table">
+          <thead><tr><th>ロール</th><th>説明</th><th style="text-align:right">時給</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="role-pill pillar">柱講師</span></td>
+              <td style="color:#888;font-size:11px">メイン運営</td>
+              <td style="text-align:right;font-family:'IBM Plex Mono',monospace;font-weight:700">3,000 円</td>
+            </tr>
+            <tr>
+              <td><span class="role-pill padawan">パダワン</span></td>
+              <td style="color:#888;font-size:11px">運営サポート</td>
+              <td style="text-align:right;font-family:'IBM Plex Mono',monospace;font-weight:700">2,000 円</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="color:#888;font-size:11px">移動対価費（共通固定）</td>
+              <td style="text-align:right;font-family:'IBM Plex Mono',monospace;font-weight:700">3,000 円</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
 
-  <!-- ====== 運営費 ====== -->
-  <div class="section">
-    <div class="section-header" onclick="toggleSection('staff')">
-      <span class="section-num">SEC — 03</span>
-      <span class="section-title">① 運営費　— 勤務時間入力</span>
-      <span class="section-toggle open" id="toggle-staff">▶</span>
-    </div>
-    <div class="section-body" id="body-staff">
-      <div class="form-grid">
+    <div class="card">
+      <div class="card-header" onclick="toggleCard('ops')">
+        <span class="card-num">03</span>
+        <span class="card-title">① 運営費</span>
+        <span class="card-arrow open" id="arrow-ops">▶</span>
+      </div>
+      <div class="card-body" id="body-ops">
         <div class="field">
           <label>ロール</label>
-          <select id="ops-role" onchange="generatePreview()">
+          <select id="ops-role">
             <option value="pillar">柱講師（3,000円/時）</option>
             <option value="padawan">パダワン（2,000円/時）</option>
           </select>
         </div>
-        <div class="field"></div>
-        <div class="field">
-          <label>開始時刻</label>
-          <input type="time" id="ops-start" value="11:00" onchange="generatePreview()">
+        <div class="row2">
+          <div class="field">
+            <label>開始時刻</label>
+            <input type="time" id="ops-start" value="11:00">
+          </div>
+          <div class="field">
+            <label>終了時刻</label>
+            <input type="time" id="ops-end" value="20:00">
+            <span class="hint">遅刻・早退は実際の時刻を入力</span>
+          </div>
         </div>
-        <div class="field">
-          <label>終了時刻</label>
-          <input type="time" id="ops-end" value="20:00" onchange="generatePreview()">
-          <span class="hint">遅刻・早退がある場合は実際の時刻を入力してください</span>
+        <div class="calc-mini">
+          <div class="calc-mini-title">計算結果</div>
+          <div class="calc-line"><span>勤務時間</span><span id="ops-h-disp">—</span></div>
+          <div class="calc-line"><span>時給</span><span id="ops-r-disp">—</span></div>
+          <div class="calc-line"><span>運営費合計</span><span id="ops-a-disp">—</span></div>
         </div>
-      </div>
-      <div class="calc-display" style="margin-top:16px;">
-        <div class="calc-display-title">運営費 計算結果</div>
-        <div class="calc-row"><span class="calc-label">勤務時間</span><span class="calc-value" id="ops-hours-display">—</span></div>
-        <div class="calc-row"><span class="calc-label">時給</span><span class="calc-value" id="ops-rate-display">—</span></div>
-        <div class="calc-row"><span class="calc-label">運営費合計</span><span class="calc-value accent" id="ops-amount-display">—</span></div>
       </div>
     </div>
-  </div>
 
-  <!-- ====== 移動対価費 ====== -->
-  <div class="section">
-    <div class="section-header" onclick="toggleSection('transport')">
-      <span class="section-num">SEC — 04</span>
-      <span class="section-title">② 移動対価費　— 交通・移動時間</span>
-      <span class="section-toggle open" id="toggle-transport">▶</span>
-    </div>
-    <div class="section-body" id="body-transport">
-      <div class="form-grid">
-        <div class="field form-full">
-          <label>ルート説明</label>
-          <input type="text" id="transport-route" placeholder="例：自宅〜会場（公共交通機関・最短ルート）">
-          <span class="hint">複数区間ある場合：例）自宅〜空港　空港〜会場（区間ごとに記載）</span>
-        </div>
+    <div class="card">
+      <div class="card-header" onclick="toggleCard('transport')">
+        <span class="card-num">04</span>
+        <span class="card-title">② 移動対価費</span>
+        <span class="card-arrow open" id="arrow-transport">▶</span>
       </div>
-      <div class="divider"></div>
-      <div class="transport-grid">
+      <div class="card-body" id="body-transport">
         <div class="field">
-          <label>移動時間（時間）</label>
-          <input type="number" id="travel-hours" value="3" min="0" max="24" placeholder="時間" onchange="calcTransport()">
-          <span class="hint">例：3 時間</span>
+          <label>ルート</label>
+          <input type="text" id="transport-route" placeholder="例：自宅〜会場（公共交通機関・最短）">
+          <span class="hint">複数区間の場合：例）自宅〜空港　空港〜会場</span>
         </div>
-        <div class="field">
-          <label>移動時間（分）</label>
-          <input type="number" id="travel-minutes" value="42" min="0" max="59" placeholder="分" onchange="calcTransport()">
-          <span class="hint">例：42 分</span>
+        <div class="divider"></div>
+        <div class="row3">
+          <div class="field">
+            <label>時間</label>
+            <input type="number" id="travel-hours" value="3" min="0" max="24">
+          </div>
+          <div class="field">
+            <label>分</label>
+            <input type="number" id="travel-minutes" value="42" min="0" max="59">
+          </div>
+          <div class="field">
+            <label>往復</label>
+            <select id="transport-roundtrip">
+              <option value="2">往復 ×2</option>
+              <option value="1">片道 ×1</option>
+            </select>
+          </div>
         </div>
-        <div class="field">
-          <label>往復設定</label>
-          <select id="transport-roundtrip" onchange="calcTransport()">
-            <option value="2">往復（×2）</option>
-            <option value="1">片道（×1）</option>
-          </select>
+        <div class="calc-mini">
+          <div class="calc-mini-title">計算プロセス</div>
+          <div class="calc-line"><span>入力時間</span><span id="ct-raw">—</span></div>
+          <div class="calc-line"><span>15分切り上げ後</span><span id="ct-rounded">—</span></div>
+          <div class="calc-line"><span>往復合計</span><span id="ct-total">—</span></div>
+          <div class="calc-line"><span>時給（固定）</span><span>3,000円/時</span></div>
+          <div class="calc-line"><span>移動対価費合計</span><span id="ct-amount">—</span></div>
         </div>
-      </div>
-      <div class="calc-display" id="transport-calc">
-        <div class="calc-display-title">計算プロセス</div>
-        <div class="calc-row"><span class="calc-label">入力移動時間</span><span class="calc-value" id="ct-raw">—</span></div>
-        <div class="calc-row"><span class="calc-label">15分単位切り上げ後</span><span class="calc-value" id="ct-rounded">—</span></div>
-        <div class="calc-row"><span class="calc-label">往復係数</span><span class="calc-value" id="ct-factor">—</span></div>
-        <div class="calc-row"><span class="calc-label">合計移動時間</span><span class="calc-value" id="ct-total">—</span></div>
-        <div class="calc-row"><span class="calc-label">適用時給（固定）</span><span class="calc-value" id="ct-rate">3,000円/時</span></div>
-        <div class="calc-row"><span class="calc-label">移動対価費合計</span><span class="calc-value accent" id="ct-amount">—</span></div>
-      </div>
-      <div class="note">
-        ※ 移動時間は<strong>公共交通機関の最短ルート</strong>（Google Maps 基準）を入力してください。<br>
-        ※ 自宅から最寄り駅・空港まで自家用車を使用する場合は、区間を分けて合算してください。<br>
-        　 例：自宅〜空港（自家用車）＋ 空港〜会場（公共交通機関）の合計時間を入力<br>
-        ※ 移動時間は15分単位で切り上げ計算します（例：3時間42分 → 3時間45分）<br>
-        ※ 往復の場合は切り上げ後の時間×2で計算します。
+        <div class="note">
+          ※ <strong>公共交通機関の最短ルート</strong>（Google Maps 基準）を入力してください。<br>
+          ※ 自宅〜駅または空港まで自家用車の場合は区間を分けて合算してください。<br>
+          　例）自宅〜空港（自家用車）＋ 空港〜会場（公共交通機関）の合計時間<br>
+          ※ 移動時間は15分単位で切り上げ（例：3時間42分 → 3時間45分）<br>
+          ※ 往復の場合は切り上げ後の時間 ×2 で計算します。
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- ====== プレビュー ====== -->
-  <div class="summary-section" id="preview-section">
-    <div class="summary-header">
-      <span class="summary-title">請求書プレビュー — INVOICE PREVIEW</span>
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#666;letter-spacing:0.15em" id="preview-date">—</span>
-    </div>
-    <div class="summary-body" id="summary-body">
-      <div style="color:#555;font-family:'IBM Plex Mono',monospace;font-size:12px;text-align:center;padding:40px 0;">
-        「プレビュー更新」ボタンを押してください
+  </div><!-- /left-col -->
+
+  <!-- ====== 右: 出力プレビュー ====== -->
+  <div class="right-col" id="right-col">
+
+    <!-- PAGE 1: 計算書 -->
+    <div class="print-page" id="page-keisansho">
+      <div class="page-badge">
+        <span>PAGE 1 / 計算書</span>
+        <span id="preview-ts">—</span>
+      </div>
+      <div id="keisansho-body">
+        <div style="color:#bbb;text-align:center;padding:40px 0;font-size:12px;">入力すると自動で更新されます</div>
       </div>
     </div>
-  </div>
 
+    <!-- PAGE 2: 請求書 -->
+    <div class="print-page" id="page-seikyusho">
+      <div class="page-badge">
+        <span>PAGE 2 / 請求書</span>
+      </div>
+      <div id="seikyusho-body">
+        <div style="color:#bbb;text-align:center;padding:40px 0;font-size:12px;">入力すると自動で更新されます</div>
+      </div>
+    </div>
+
+  </div><!-- /right-col -->
 </div><!-- /main -->
 
-<div class="toast" id="toast">保存しました</div>
+<div class="toast" id="toast"></div>
 
 <script>
-// ==================== INIT ====================
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('event-date').value = new Date().toISOString().split('T')[0];
-  calcTransport();
-  generatePreview();
-});
+const RATE = { pillar: 3000, padawan: 2000, transport: 3000 };
+const $ = id => document.getElementById(id);
 
-// ==================== SECTION TOGGLE ====================
-function toggleSection(id) {
-  const body = document.getElementById('body-' + id);
-  const toggle = document.getElementById('toggle-' + id);
-  if (body.classList.contains('hidden')) {
-    body.classList.remove('hidden');
-    toggle.classList.add('open');
-  } else {
-    body.classList.add('hidden');
-    toggle.classList.remove('open');
-  }
+function fmtMins(mins) {
+  const h = Math.floor(mins / 60), m = mins % 60;
+  return m > 0 ? `${h}時間${m}分` : `${h}時間`;
 }
-
-// ==================== TIME CALC ====================
-function calcStaffHours(start, end) {
-  if (!start || !end) return 0;
-  const [sh, sm] = start.split(':').map(Number);
-  const [eh, em] = end.split(':').map(Number);
-  const diff = (eh * 60 + em) - (sh * 60 + sm);
-  return diff > 0 ? diff / 60 : 0;
-}
-
-function formatHours(h) {
-  const hh = Math.floor(h);
-  const mm = Math.round((h - hh) * 60);
+function fmtHours(h) {
+  const hh = Math.floor(h), mm = Math.round((h - hh) * 60);
   return mm > 0 ? `${hh}時間${mm}分` : `${hh}時間`;
+}
+function fmtDate(str) {
+  if (!str) return '—';
+  const d = new Date(str);
+  return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+}
+function yen(n) { return '¥ ' + Math.round(n).toLocaleString(); }
+
+function toggleCard(id) {
+  const body = $('body-' + id), arrow = $('arrow-' + id);
+  const hidden = body.classList.toggle('hidden');
+  arrow.classList.toggle('open', !hidden);
 }
 
 function getOpsData() {
-  const role = document.getElementById('ops-role').value;
-  const start = document.getElementById('ops-start').value;
-  const end = document.getElementById('ops-end').value;
-  const rate = role === 'pillar' ? 3000 : 2000;
-  const hours = calcStaffHours(start, end);
-  const amount = Math.round(hours * rate);
-  // update inline display
-  document.getElementById('ops-hours-display').textContent = formatHours(hours);
-  document.getElementById('ops-rate-display').textContent = `${rate.toLocaleString()}円/時`;
-  document.getElementById('ops-amount-display').textContent = `¥ ${amount.toLocaleString()}`;
+  const role = $('ops-role').value;
+  const start = $('ops-start').value;
+  const end   = $('ops-end').value;
+  if (!start || !end) return { role, start, end, hours: 0, rate: RATE[role], amount: 0 };
+  const [sh, sm] = start.split(':').map(Number);
+  const [eh, em] = end.split(':').map(Number);
+  const hours = Math.max(0, (eh * 60 + em - sh * 60 - sm) / 60);
+  const rate = RATE[role], amount = Math.round(hours * rate);
+  $('ops-h-disp').textContent = fmtHours(hours);
+  $('ops-r-disp').textContent = rate.toLocaleString() + '円/時';
+  $('ops-a-disp').textContent = yen(amount);
   return { role, start, end, hours, rate, amount };
 }
 
-// ==================== TRANSPORT CALC ====================
-const TRANSPORT_RATE = 3000;
-
-function calcTransport() {
-  const h = parseInt(document.getElementById('travel-hours').value) || 0;
-  const m = parseInt(document.getElementById('travel-minutes').value) || 0;
-  const totalMins = h * 60 + m;
-  const roundedMins = Math.ceil(totalMins / 15) * 15;
-  const factor = parseInt(document.getElementById('transport-roundtrip').value) || 2;
-  const finalMins = roundedMins * factor;
-  const amount = Math.round((finalMins / 60) * TRANSPORT_RATE);
-
-  const fmtMins = (mins) => {
-    const hh = Math.floor(mins / 60); const mm = mins % 60;
-    return mm > 0 ? `${hh}時間${mm}分` : `${hh}時間`;
-  };
-
-  document.getElementById('ct-raw').textContent = fmtMins(totalMins);
-  document.getElementById('ct-rounded').textContent = fmtMins(roundedMins);
-  document.getElementById('ct-factor').textContent = factor === 2 ? '×2（往復）' : '×1（片道）';
-  document.getElementById('ct-total').textContent = fmtMins(finalMins);
-  document.getElementById('ct-rate').textContent = `${TRANSPORT_RATE.toLocaleString()}円/時（固定）`;
-  document.getElementById('ct-amount').textContent = `¥ ${amount.toLocaleString()}`;
-
-  generatePreview();
-  return { amount, finalMins, roundedMins, totalMins, factor };
-}
-
 function getTransportData() {
-  const h = parseInt(document.getElementById('travel-hours').value) || 0;
-  const m = parseInt(document.getElementById('travel-minutes').value) || 0;
-  const totalMins = h * 60 + m;
-  const roundedMins = Math.ceil(totalMins / 15) * 15;
-  const factor = parseInt(document.getElementById('transport-roundtrip').value) || 2;
-  const finalMins = roundedMins * factor;
-  const amount = Math.round((finalMins / 60) * TRANSPORT_RATE);
-  const route = document.getElementById('transport-route').value || '自宅〜会場';
-  return { amount, finalMins, roundedMins, totalMins, factor, route };
+  const h = parseInt($('travel-hours').value) || 0;
+  const m = parseInt($('travel-minutes').value) || 0;
+  const totalMins   = h * 60 + m;
+  const roundedMins = totalMins > 0 ? Math.ceil(totalMins / 15) * 15 : 0;
+  const factor      = parseInt($('transport-roundtrip').value) || 2;
+  const finalMins   = roundedMins * factor;
+  const amount      = Math.round((finalMins / 60) * RATE.transport);
+  const route       = $('transport-route').value || '自宅〜会場';
+  $('ct-raw').textContent     = fmtMins(totalMins);
+  $('ct-rounded').textContent = fmtMins(roundedMins);
+  $('ct-total').textContent   = fmtMins(finalMins) + (factor === 2 ? '（往復）' : '（片道）');
+  $('ct-amount').textContent  = yen(amount);
+  return { totalMins, roundedMins, finalMins, factor, amount, route };
 }
 
-// ==================== GENERATE PREVIEW ====================
 function generatePreview() {
-  const eventName = document.getElementById('event-name').value || '（イベント名未入力）';
-  const eventDate = document.getElementById('event-date').value || '—';
-  const requester = document.getElementById('requester-name').value || '（氏名未入力）';
-  const recipient = document.getElementById('recipient-name').value || '株式会社INFLU様';
-  const memo = document.getElementById('event-memo').value || '';
-
   const ops = getOpsData();
-  const td = getTransportData();
+  const td  = getTransportData();
+  const hasT  = td.totalMins > 0;
+  const total = ops.amount + (hasT ? td.amount : 0);
 
-  const hasTransport = (td.totalMins > 0);
-  const totalAmount = ops.amount + (hasTransport ? td.amount : 0);
+  const eventName = $('event-name').value    || '（イベント名未入力）';
+  const eventDate = $('event-date').value    || '';
+  const requester = $('requester-name').value || '（氏名未入力）';
+  const recipient = $('recipient-name').value || '株式会社INFLU様';
+  const memo      = $('event-memo').value    || '';
+  const roleName  = ops.role === 'pillar' ? '柱講師' : 'パダワン';
 
-  let dateFormatted = '—';
-  if (eventDate) {
-    const d = new Date(eventDate);
-    dateFormatted = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
-  }
-
-  const roleName = ops.role === 'pillar' ? '柱講師' : 'パダワン';
-  const badgeStyle = ops.role === 'pillar'
-    ? 'background:#fff;color:#0a0a0a;padding:2px 8px;font-size:9px;font-family:IBM Plex Mono,monospace;letter-spacing:0.1em;border:1px solid #fff;'
-    : 'background:transparent;color:#888;padding:2px 8px;font-size:9px;font-family:IBM Plex Mono,monospace;letter-spacing:0.1em;border:1px solid #555;';
-
-  const fmtMins = (mins) => {
-    const hh = Math.floor(mins / 60); const mm = mins % 60;
-    return mm > 0 ? `${hh}時間${mm}分` : `${hh}時間`;
-  };
-
-  const html = `
-    <div class="summary-event-info">
-      EVENT: ${eventName} &nbsp;|&nbsp; DATE: ${dateFormatted} &nbsp;|&nbsp; REQUESTER: ${requester} &nbsp;|&nbsp; TO: ${recipient}
-      ${memo ? `<br>MEMO: ${memo}` : ''}
+  /* ---- PAGE 1: 計算書 ---- */
+  $('keisansho-body').innerHTML = `
+    <div class="doc-title">計算書</div>
+    <div class="doc-meta">
+      <div class="doc-meta-row"><span class="doc-meta-lbl">イベント</span><span class="doc-meta-val">${eventName}</span></div>
+      <div class="doc-meta-row"><span class="doc-meta-lbl">開催日</span><span class="doc-meta-val">${fmtDate(eventDate)}</span></div>
+      <div class="doc-meta-row"><span class="doc-meta-lbl">請求者</span><span class="doc-meta-val">${requester}</span></div>
+      <div class="doc-meta-row"><span class="doc-meta-lbl">ロール</span><span class="doc-meta-val">${roleName}</span></div>
     </div>
 
-    <div class="summary-staff-rows">
-      <div class="summary-row header">
-        <span>ロール</span><span></span><span>勤務時間</span><span>時給</span><span style="text-align:right">運営費</span>
-      </div>
-      <div class="summary-row">
-        <span><span style="${badgeStyle}">${roleName}</span></span>
-        <span></span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#aaa">${ops.start} → ${ops.end}（${formatHours(ops.hours)}）</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#888">${ops.rate.toLocaleString()}円/時</span>
-        <span class="amount">¥ ${ops.amount.toLocaleString()}</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;padding:12px 0 0;border-top:1px solid #333;margin-top:4px;">
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#666;">① 運営費 小計</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;">¥ ${ops.amount.toLocaleString()}</span>
-      </div>
+    <div class="calc-block">
+      <div class="calc-block-hd">① 運営費の計算</div>
+      <table class="ct">
+        <tr><td class="lbl">勤務開始</td><td class="val">${ops.start}</td></tr>
+        <tr><td class="lbl">勤務終了</td><td class="val">${ops.end}</td></tr>
+        <tr><td class="lbl">勤務時間</td><td class="val">${fmtHours(ops.hours)}</td></tr>
+        <tr><td class="lbl">時給</td><td class="val">${ops.rate.toLocaleString()}円/時</td></tr>
+        <tr class="tr"><td class="lbl">① 運営費</td><td class="val">${yen(ops.amount)}</td></tr>
+      </table>
     </div>
 
-    ${hasTransport ? `
-    <div class="transport-summary">
-      <div class="transport-summary-title">② 移動対価費</div>
-      <div class="calc-row" style="border-color:#333;">
-        <span class="calc-label" style="color:#888;">ルート</span>
-        <span class="calc-value" style="color:#ccc;">${td.route}</span>
-      </div>
-      <div class="calc-row" style="border-color:#333;">
-        <span class="calc-label" style="color:#888;">移動時間（入力）</span>
-        <span class="calc-value" style="color:#ccc;">${fmtMins(td.totalMins)}</span>
-      </div>
-      <div class="calc-row" style="border-color:#333;">
-        <span class="calc-label" style="color:#888;">15分切り上げ後</span>
-        <span class="calc-value" style="color:#ccc;">${fmtMins(td.roundedMins)}</span>
-      </div>
-      <div class="calc-row" style="border-color:#333;">
-        <span class="calc-label" style="color:#888;">往復合計</span>
-        <span class="calc-value" style="color:#ccc;">${fmtMins(td.finalMins)}</span>
-      </div>
-      <div class="calc-row" style="border-color:#333;">
-        <span class="calc-label" style="color:#888;">適用時給（固定）</span>
-        <span class="calc-value" style="color:#ccc;">${TRANSPORT_RATE.toLocaleString()}円/時</span>
-      </div>
-      <div class="calc-row" style="border-color:#555;padding-top:8px;margin-top:4px;border-top:1px solid #555;">
-        <span class="calc-label" style="color:#aaa;font-weight:700;">② 移動対価費 小計</span>
-        <span class="calc-value" style="color:#fff;font-size:16px;font-weight:700;">¥ ${td.amount.toLocaleString()}</span>
-      </div>
+    <div class="calc-block">
+      <div class="calc-block-hd">② 移動対価費の計算</div>
+      ${hasT ? `
+      <table class="ct">
+        <tr><td class="lbl">ルート</td><td class="val">${td.route}</td></tr>
+        <tr><td class="lbl">移動時間（入力）</td><td class="val">${fmtMins(td.totalMins)}</td></tr>
+        <tr><td class="lbl">15分切り上げ後</td><td class="val">${fmtMins(td.roundedMins)}</td></tr>
+        <tr><td class="lbl">往復係数</td><td class="val">${td.factor === 2 ? '×2（往復）' : '×1（片道）'}</td></tr>
+        <tr><td class="lbl">合計移動時間</td><td class="val">${fmtMins(td.finalMins)}</td></tr>
+        <tr><td class="lbl">時給（共通固定）</td><td class="val">${RATE.transport.toLocaleString()}円/時</td></tr>
+        <tr class="tr"><td class="lbl">② 移動対価費</td><td class="val">${yen(td.amount)}</td></tr>
+      </table>
+      ` : `<div style="color:#bbb;font-size:11px;padding:6px 0;">移動時間が0のため計上なし</div>`}
     </div>
-    ` : `
-    <div class="transport-summary" style="text-align:center;color:#555;font-family:'IBM Plex Mono',monospace;font-size:12px;">
-      移動対価費：移動時間が0の場合は計上されません
-    </div>
-    `}
 
-    <div class="total-area">
+    <div class="grand-bar">
+      <div class="grand-sub">
+        ① ${yen(ops.amount)}${hasT ? '　＋　② ' + yen(td.amount) : ''}
+      </div>
+      <div class="grand-val">${yen(total)}</div>
+    </div>
+    ${memo ? `<div style="margin-top:10px;font-size:11px;color:#888;border-top:1px solid #eee;padding-top:8px;">備考：${memo}</div>` : ''}
+  `;
+
+  /* ---- PAGE 2: 請求書 ---- */
+  const rows = hasT ? `
+    <tr>
+      <td>① 運営費</td>
+      <td>${roleName}　${ops.start}〜${ops.end}（${fmtHours(ops.hours)}）</td>
+      <td>${ops.rate.toLocaleString()}円/時</td>
+      <td>${yen(ops.amount)}</td>
+    </tr>
+    <tr>
+      <td>② 移動対価費</td>
+      <td>${td.route}　${fmtMins(td.totalMins)}→${fmtMins(td.roundedMins)}×${td.factor}</td>
+      <td>${RATE.transport.toLocaleString()}円/時</td>
+      <td>${yen(td.amount)}</td>
+    </tr>
+  ` : `
+    <tr>
+      <td>① 運営費</td>
+      <td>${roleName}　${ops.start}〜${ops.end}（${fmtHours(ops.hours)}）</td>
+      <td>${ops.rate.toLocaleString()}円/時</td>
+      <td>${yen(ops.amount)}</td>
+    </tr>
+  `;
+
+  $('seikyusho-body').innerHTML = `
+    <div class="inv-title-row">
+      <div class="inv-title">請求書</div>
+      <div class="inv-date">DATE：${fmtDate(eventDate)}</div>
+    </div>
+    <div class="inv-parties">
       <div>
-        <div class="total-label">請求合計金額</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#555;margin-top:4px;">
-          運営費 ¥${ops.amount.toLocaleString()} ${hasTransport ? `+ 移動対価費 ¥${td.amount.toLocaleString()}` : ''}
-        </div>
+        <div class="party-lbl">請求先 / BILL TO</div>
+        <div class="party-name">${recipient}</div>
+        <div class="party-sub">御中</div>
       </div>
+      <div style="text-align:right">
+        <div class="party-lbl">請求者 / FROM</div>
+        <div class="party-name">${requester}</div>
+        <div class="party-sub">${eventName}</div>
+      </div>
+    </div>
+    <table class="inv-table">
+      <thead>
+        <tr>
+          <th style="width:22%">項目</th>
+          <th style="width:44%">内容</th>
+          <th style="width:16%">単価</th>
+          <th style="width:18%;text-align:right">金額</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows}
+        <tr class="sub-row">
+          <td colspan="3" style="text-align:right;font-size:11px;letter-spacing:0.1em;">合　計</td>
+          <td>${yen(total)}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="inv-total">
+      <div class="inv-total-lbl">ご請求金額</div>
       <div>
-        <span class="total-amount">¥ ${totalAmount.toLocaleString()}</span>
-        <span class="total-unit">円（税込）</span>
+        <span class="inv-total-amt">${yen(total)}</span>
+        <span class="inv-total-unit">円（税込）</span>
       </div>
+    </div>
+    ${memo ? `<div class="inv-footer">備考：${memo}</div>` : ''}
+    <div class="inv-footer">
+      ※ 本請求書はSNSマーケスクール講師 運営費・移動対価費の請求書です。<br>
+      ※ お支払いは請求日より30日以内にお願いいたします。
     </div>
   `;
 
-  document.getElementById('summary-body').innerHTML = html;
-  document.getElementById('preview-date').textContent = `GENERATED: ${new Date().toLocaleString('ja-JP')}`;
+  $('preview-ts').textContent = new Date().toLocaleTimeString('ja-JP') + ' 更新';
 }
 
-// ==================== SAVE / LOAD ====================
+// ===== AUTO UPDATE =====
+function attachListeners() {
+  ['event-name','event-date','requester-name','event-memo',
+   'ops-role','ops-start','ops-end',
+   'transport-route','travel-hours','travel-minutes','transport-roundtrip'
+  ].forEach(id => {
+    const el = $(id);
+    if (!el) return;
+    el.addEventListener('input',  generatePreview);
+    el.addEventListener('change', generatePreview);
+  });
+}
+
+// ===== SAVE / LOAD =====
 function collectData() {
   return {
-    eventName: document.getElementById('event-name').value,
-    eventDate: document.getElementById('event-date').value,
-    requesterName: document.getElementById('requester-name').value,
-    eventMemo: document.getElementById('event-memo').value,
-    opsRole: document.getElementById('ops-role').value,
-    opsStart: document.getElementById('ops-start').value,
-    opsEnd: document.getElementById('ops-end').value,
-    transportRoute: document.getElementById('transport-route').value,
-    travelHours: document.getElementById('travel-hours').value,
-    travelMinutes: document.getElementById('travel-minutes').value,
-    transportRoundtrip: document.getElementById('transport-roundtrip').value,
+    eventName: $('event-name').value, eventDate: $('event-date').value,
+    requesterName: $('requester-name').value, eventMemo: $('event-memo').value,
+    opsRole: $('ops-role').value, opsStart: $('ops-start').value, opsEnd: $('ops-end').value,
+    transportRoute: $('transport-route').value,
+    travelHours: $('travel-hours').value, travelMinutes: $('travel-minutes').value,
+    transportRoundtrip: $('transport-roundtrip').value,
     savedAt: new Date().toISOString()
   };
 }
-
-function applyData(data) {
-  document.getElementById('event-name').value = data.eventName || '';
-  document.getElementById('event-date').value = data.eventDate || '';
-  document.getElementById('requester-name').value = data.requesterName || '';
-  document.getElementById('event-memo').value = data.eventMemo || '';
-  document.getElementById('ops-role').value = data.opsRole || 'pillar';
-  document.getElementById('ops-start').value = data.opsStart || '11:00';
-  document.getElementById('ops-end').value = data.opsEnd || '20:00';
-  document.getElementById('transport-route').value = data.transportRoute || '';
-  document.getElementById('travel-hours').value = data.travelHours || 0;
-  document.getElementById('travel-minutes').value = data.travelMinutes || 0;
-  document.getElementById('transport-roundtrip').value = data.transportRoundtrip || '2';
-  calcTransport();
+function applyData(d) {
+  $('event-name').value = d.eventName||''; $('event-date').value = d.eventDate||'';
+  $('requester-name').value = d.requesterName||''; $('event-memo').value = d.eventMemo||'';
+  $('ops-role').value = d.opsRole||'pillar'; $('ops-start').value = d.opsStart||'11:00'; $('ops-end').value = d.opsEnd||'20:00';
+  $('transport-route').value = d.transportRoute||'';
+  $('travel-hours').value = d.travelHours||0; $('travel-minutes').value = d.travelMinutes||0;
+  $('transport-roundtrip').value = d.transportRoundtrip||'2';
   generatePreview();
 }
-
 function saveData() {
   const data = collectData();
   try {
     localStorage.setItem('sns_billing_save', JSON.stringify(data));
-    showToast('💾 データを保存しました（' + new Date().toLocaleTimeString('ja-JP') + '）');
-  } catch(e) {
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'sns_billing_save_' + (data.eventDate || 'draft') + '.json';
-    a.click();
-    showToast('📁 JSONファイルとして保存しました');
+    showToast('💾 保存しました（' + new Date().toLocaleTimeString('ja-JP') + '）');
+  } catch {
+    const a = Object.assign(document.createElement('a'), {
+      href: URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),
+      download: `sns_billing_${data.eventDate||'draft'}.json`
+    });
+    a.click(); showToast('📁 JSONファイルとして保存しました');
   }
 }
-
 function loadData() {
   try {
     const raw = localStorage.getItem('sns_billing_save');
     if (!raw) { showToast('⚠ 保存データが見つかりません'); return; }
-    const data = JSON.parse(raw);
-    applyData(data);
-    showToast('📂 データを読み込みました（' + new Date(data.savedAt).toLocaleString('ja-JP') + '）');
-  } catch(e) {
-    const input = document.createElement('input');
-    input.type = 'file'; input.accept = '.json';
-    input.onchange = (ev) => {
-      const file = ev.target.files[0]; if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try { applyData(JSON.parse(e.target.result)); showToast('📂 JSONファイルを読み込みました'); }
-        catch { showToast('⚠ ファイルの読み込みに失敗しました'); }
-      };
-      reader.readAsText(file);
+    applyData(JSON.parse(raw)); showToast('📂 データを読み込みました');
+  } catch {
+    const input = Object.assign(document.createElement('input'),{type:'file',accept:'.json'});
+    input.onchange = ev => {
+      const r = new FileReader();
+      r.onload = e => { try { applyData(JSON.parse(e.target.result)); showToast('📂 読み込み完了'); } catch { showToast('⚠ 読み込み失敗'); } };
+      r.readAsText(ev.target.files[0]);
     };
     input.click();
   }
 }
-
 function clearAll() {
   if (!confirm('すべてのデータをリセットしますか？')) return;
-  document.getElementById('event-name').value = '';
-  document.getElementById('event-date').value = new Date().toISOString().split('T')[0];
-  document.getElementById('requester-name').value = '';
-  document.getElementById('event-memo').value = '';
-  document.getElementById('ops-role').value = 'pillar';
-  document.getElementById('ops-start').value = '11:00';
-  document.getElementById('ops-end').value = '20:00';
-  document.getElementById('transport-route').value = '';
-  document.getElementById('travel-hours').value = 0;
-  document.getElementById('travel-minutes').value = 0;
-  document.getElementById('transport-roundtrip').value = '2';
-  calcTransport();
-  generatePreview();
-  showToast('✕ リセットしました');
+  $('event-name').value=''; $('event-date').value=new Date().toISOString().split('T')[0];
+  $('requester-name').value=''; $('event-memo').value='';
+  $('ops-role').value='pillar'; $('ops-start').value='11:00'; $('ops-end').value='20:00';
+  $('transport-route').value=''; $('travel-hours').value=0; $('travel-minutes').value=0;
+  $('transport-roundtrip').value='2';
+  generatePreview(); showToast('✕ リセットしました');
 }
 
-// ==================== EXPORT ====================
-function exportPDF() {
-  generatePreview();
-  setTimeout(() => window.print(), 300);
-}
-
+// ===== EXPORT =====
+function exportPDF() { generatePreview(); setTimeout(() => window.print(), 300); }
 function exportImage() {
-  generatePreview();
-  showToast('📷 画像を生成中...');
-  const target = document.getElementById('preview-section');
-  html2canvas(target, { scale: 2, backgroundColor: '#0a0a0a', useCORS: true, logging: false })
+  showToast('📷 画像生成中...');
+  html2canvas($('right-col'), { scale: 2, backgroundColor: '#ebebeb', useCORS: true, logging: false })
     .then(canvas => {
-      const link = document.createElement('a');
-      const eventName = document.getElementById('event-name').value || 'invoice';
-      const date = document.getElementById('event-date').value || new Date().toISOString().split('T')[0];
-      link.download = `sns_billing_${date}_${eventName}.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-      showToast('✅ 画像を保存しました');
+      const a = Object.assign(document.createElement('a'), {
+        download: `sns_billing_${$('event-date').value||'invoice'}.png`,
+        href: canvas.toDataURL('image/png')
+      });
+      a.click(); showToast('✅ 画像を保存しました');
     }).catch(() => showToast('⚠ 画像生成に失敗しました'));
 }
 
-// ==================== TOAST ====================
+// ===== TOAST =====
 function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._tid); t._tid = setTimeout(() => t.classList.remove('show'), 3000);
 }
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+  $('event-date').value = new Date().toISOString().split('T')[0];
+  attachListeners();
+  generatePreview();
+});
 </script>
 </body>
 </html>

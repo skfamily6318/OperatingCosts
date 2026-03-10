@@ -153,6 +153,24 @@
     border-color: var(--gray-100);
     cursor: default;
   }
+  /* 未入力の必須フィールド */
+  .field input.req-empty,
+  .field select.req-empty {
+    border-color: #e8a000;
+    background: #fffbf0;
+  }
+  .field input.req-empty:focus,
+  .field select.req-empty:focus {
+    border-color: #c47d00;
+    background: #fff8e6;
+  }
+  .req-badge {
+    display: inline-block;
+    font-size: 9px;
+    color: #e8a000;
+    font-family: 'IBM Plex Mono', monospace;
+    margin-left: 6px;
+  }
   .field .hint { font-size: 10px; color: var(--gray-400); line-height: 1.5; }
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
@@ -766,8 +784,7 @@ function generatePreview() {
     </div>
     ${memo ? `<div class="inv-footer">備考：${memo}</div>` : ''}
     <div class="inv-footer">
-      ※ 本請求書はDRM×eduGate講師 運営費・移動対価費の請求書です。<br>
-      ※ お支払いは請求日より30日以内にお願いいたします。
+      ※ 本請求書はDRM×eduGate講師 運営費・移動対価費の請求書です。
     </div>
   `;
 
@@ -775,6 +792,28 @@ function generatePreview() {
 }
 
 // ===== AUTO UPDATE =====
+// ===== REQUIRED FIELD HIGHLIGHT =====
+const REQUIRED_IDS = ['event-name', 'event-date', 'requester-name', 'transport-route'];
+
+function checkRequired() {
+  REQUIRED_IDS.forEach(id => {
+    const el = $(id);
+    if (!el) return;
+    const empty = el.value.trim() === '';
+    el.classList.toggle('req-empty', empty);
+    const label = el.closest && el.closest('.field') && el.closest('.field').querySelector('label');
+    if (!label) return;
+    let badge = label.querySelector('.req-badge');
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'req-badge';
+      label.appendChild(badge);
+    }
+    badge.textContent = empty ? '● 未入力' : '✓';
+    badge.style.color = empty ? '#e8a000' : '#4caf50';
+  });
+}
+
 function attachListeners() {
   ['event-name','event-date','requester-name','event-memo',
    'ops-role','ops-start','ops-end',
@@ -782,8 +821,8 @@ function attachListeners() {
   ].forEach(id => {
     const el = $(id);
     if (!el) return;
-    el.addEventListener('input',  generatePreview);
-    el.addEventListener('change', generatePreview);
+    el.addEventListener('input',  () => { generatePreview(); checkRequired(); });
+    el.addEventListener('change', () => { generatePreview(); checkRequired(); });
   });
 }
 
@@ -807,6 +846,7 @@ function applyData(d) {
   $('travel-hours').value = d.travelHours||0; $('travel-minutes').value = d.travelMinutes||0;
   $('transport-roundtrip').value = d.transportRoundtrip||'2';
   generatePreview();
+  checkRequired();
 }
 function saveData() {
   const data = collectData();
@@ -871,6 +911,7 @@ document.addEventListener('DOMContentLoaded', () => {
   $('event-date').value = new Date().toISOString().split('T')[0];
   attachListeners();
   generatePreview();
+  checkRequired();
 });
 </script>
 </body>
